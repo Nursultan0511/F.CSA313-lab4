@@ -100,4 +100,23 @@ class GradeCalculatorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> calc.totalScore(10, 41, 10, 10, 30));
     }
+
+    // ---- Parameterized ----
+
+    @ParameterizedTest
+    @CsvSource({"95,A", "85,B", "75,C", "65,D", "30,F",
+                "90,A", "89.99,B", "80,B", "70,C", "60,D", "59.99,F", "0,F"})
+    @DisplayName("letterGrade: ердийн болон хязгаарын утгууд")
+    void letterGradeBoundaries(double score, String expected) {
+        assertEquals(expected, new GradeCalculator().letterGrade(score));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"10,40,10,10,30,100", "0,0,0,0,0,0", "5,20,5,5,15,50"})
+    @DisplayName("totalScore: зөв нийлбэр")
+    void totalScoreSums(double att, double lab, double q1, double q2,
+                        double exam, double expected) {
+        assertEquals(expected,
+                new GradeCalculator().totalScore(att, lab, q1, q2, exam), 0.0001);
+    }
 }
