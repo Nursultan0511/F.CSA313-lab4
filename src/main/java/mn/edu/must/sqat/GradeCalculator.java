@@ -5,7 +5,7 @@ public class GradeCalculator {
     // 90+ -> A, 80-89 -> B, 70-79 -> C, 60-69 -> D, <60 -> F
     public String letterGrade(double score) {
         checkRange(score, 100, "Оноо");
-        if (score >= 90) return "A";
+        if (score > 90) return "A";
         if (score >= 80) return "B";
         if (score >= 70) return "C";
         if (score >= 60) return "D";
